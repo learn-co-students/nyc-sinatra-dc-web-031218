@@ -1,3 +1,4 @@
+require 'pry'
 class LandmarksController < ApplicationController
 
   set :views, Proc.new { File.join(root, "../views/") }
@@ -26,7 +27,6 @@ class LandmarksController < ApplicationController
 
   get '/landmarks/:id' do
     @landmark = Landmark.find(params[:id])
-
     erb :'landmarks/show'
   end
 
@@ -40,7 +40,8 @@ class LandmarksController < ApplicationController
   patch '/landmarks/:id' do
     @landmark = Landmark.find(params[:id])
     @landmark.update(name: params[:name], year_completed: params[:year_completed], figure_id: params[:figure_id])
-
+    puts params
+    binding.pry
     redirect to "/landmarks/#{@landmark.id}"
   end
 
