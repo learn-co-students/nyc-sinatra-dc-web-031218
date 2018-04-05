@@ -11,7 +11,7 @@ class LandmarksController < ApplicationController
   end
 
   post '/landmarks' do
-    @landmark = Landmark.create(params)
+    @landmark = Landmark.create(params[:landmark])
 
     redirect to "landmark/#{@landmark.id}"
   end
@@ -41,7 +41,7 @@ class LandmarksController < ApplicationController
     @landmark = Landmark.find(params[:id])
     @landmark.update(name: params[:name], year_completed: params[:year_completed], figure_id: params[:figure_id])
 
-    redirect to "landmarks/#{@landmark.id}"
+    redirect to "/landmarks/#{@landmark.id}"
   end
 
 
