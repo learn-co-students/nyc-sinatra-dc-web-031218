@@ -1,15 +1,40 @@
 class FiguresController < ApplicationController
-	# create figure 
-	get '/create_figure' do 
-		erb :create
+	# shows all figures
+	get '/figures' do
+		@figures = Figure.all
+		erb '/figures/index'.to_sym
 	end
-	
+
+	#make new figure
+	get '/figures/new' do
+		erb '/figures/new'.to_sym
+	end
+
+	#post that creates figures
+	post '/figures' do
+		@figure = Figure.create(params)
+		#@landmark = Landmark.create? since we need to create or update a landmark
+		redirect to "/figures/#{@figure.id}"
+	end
+
+	#show a specific figure by ID
+	get '/figures/:id' do
+		@figure = Figure.find(params[:id])
+		erb '/figures/show'.to_sym
+	end
+
 	# edit a figure
-	get '/:id/edit_figure' do 
-	
+	get '/figures/:id/edit' do
+		@figures = Figure.find(params[:id])
+		erb '/figures/edit'.to_sym
 	end
 
-	patch '/edit_figure' do 
-
+	#this is the patch that will update the figure
+	patch '/figures/:id' do
+		@figure = Figure.find(param[:id])
+		@figure.update()#need to enter each key/value pair that enters anything that is updated
+		erb '/figures/show'.to_sym
 	end
+
+
 end
