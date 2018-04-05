@@ -1,6 +1,8 @@
-<% @figures.each do |figure| %>
-  Figure Name: <%= figure.name %>
-  Figure Title: <%= figure.figure_titles.title %>
-  Associated Landmark: <%= figure.landmark %>
-  <a href="/figures/<%= figure.id %>">This figures page</a>
-<% end %>
+<p><% @figures.each do |figure| %>
+  Figure Name: <%= figure.name %><br>
+  Figure Title: <% figure.titles.each do |title| %><br>
+  <p><%= title.name %></p>
+  <% end %>
+  <a href="/figures/<%= figure.id %>">This figures page</a><br>
+  <p>------------------------------------------------</p>
+<% end %></p>
