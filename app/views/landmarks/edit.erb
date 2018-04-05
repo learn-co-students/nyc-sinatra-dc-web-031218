@@ -14,7 +14,7 @@
       <% @figures.each do |figure| %>
 
 
-        <input type="radio" name="landmark[figure_id]" value="<%= figure.id %>" <%= 'checked' if @landmark.figure == figure%>/>
+        <input type="checkbox" name="landmark[figure_id]" value="<%= figure.id %>" <%= 'checked' if @landmark.figure == figure%>/>
         <%= figure.name %><br>
         <br>
       <%end%>
