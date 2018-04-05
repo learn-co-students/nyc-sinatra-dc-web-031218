@@ -9,7 +9,7 @@ ActiveRecord::Base.establish_connection(
   :database => "db/nyc#{ENV['SINATRA_ENV']}.sqlite"
 )
 
-ActiveRecord::Base.logger = nil
+# ActiveRecord::Base.logger = nil
 
 require_relative "../app/controllers/application_controller.rb"
 

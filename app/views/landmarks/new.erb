@@ -8,16 +8,16 @@
     <h1>New Landmark</h1>
 
     <form action="/landmarks" method="post">
-      Name: <input type="text" name="name"><br><br>
-      Year Completed: <input type="number" name="year_completed"  min="1000" max="2018"><br><br>
+      Name: <input type="text" name="landmark[name]" id="landmark_name"><br><br>
+      Year Completed: <input type="number" name="landmark[year_completed]"  min="1000" max="2018" id="landmark_year_completed"><br><br>
       Figures:<br><br>
       <% @figures.each do |figure| %>
 
-        <input type="radio" name="figure_id" value="<%= figure.id %>"> <%= figure.name %><br>
+        <input type="radio" name="landmark[figure_id]" value="<%= figure.id %>"> <%= figure.name %><br>
         <br>
       <%end%>
       <br><br>
-      <input type="submit" value="submit">
+      <input type="submit" value="Create New Landmark">
     </form>
 
   </body>
