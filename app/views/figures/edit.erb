@@ -2,30 +2,36 @@
 <form method="post" action="/figures/<%= @figure.id %>">
 
 
-  Edit Name: <input type="text" name="figure[name]" value= "<%= @figure.name %>"><br>
+  Edit Name: <input id="figure_name" type="text" name="figure[name]" value= "<%= @figure.name %>"><br>
 
   <h2>Titles</h2>
 
-    <% @titles.each do |title| %>
-    binding.pry
-      <% if @figure_titles.include?(title.name)%>
-        <input type="checkbox" name="figure[title_ids][][<%=title.name%>]" id= "title_name" value= "<%= title.name %>"checked> <%= title.name %>
+  <% @titles.each do |title| %>
+      <% if @figure_titles.include?(title)%>
+        <input type="checkbox" name="figure[title_ids][][<%=title.name%>]" id= "title_<%=title.id%>" value= "<%= title.name %>"checked> <%= title.name %><br/>
       <% else %>
-      <input type="checkbox" name="figure[title_ids][][<%=title.name%>]" id= "title_name" value= "<%= title.name %>" > <%= title.name %>
+      <input type="checkbox" name="figure[title_ids][][<%=title.name%>]" id= "title_name" value= "<%= title.name %>" > <%= title.name %><br/>
 
       <% end %>
     <% end %>
 
-  Add New Title: <br><input type="text" name="title[name]">
+  Add New Title: <br><input type="text" name="title[name]"><br/>
 
+  <% @landmarks.each do |landmark| %>
+      <% if @figure_landmarks.include?(landmark)%>
+        <input type="checkbox" name="figure[landmark_ids][][<%=landmark.name%>]" id= "landmark_<%=landmark.id%>" value= "<%= landmark.name %>"checked> <%= landmark.name %><br/>
+      <% else %>
+      <input type="checkbox" name="figure[landmark_ids][][<%=landmark.name%>]" id= "landmark_<%=landmark.id%>" value= "<%= landmark.name %>" > <%= landmark.name %><br/>
 
+      <% end %>
+    <% end %>
 
 
   Add New Landmark <br/>
-  Name: <input type="text" name="landmark[name]"><br>
-  Year Completed: <input type="text" name="landmark[year_completed]"><br>
+  Name: <input id="new_landmark" type="text" name="landmark[name]"><br>
+  Year Completed: <input id="landmark_year_completed" type="text" name="landmark[year_completed]"><br>
 
 
-  <input id="hidden" type="hidden" name="_method" value="patch">
-  <input type="submit" value="Create New Figure">
+  <input id="hidden" type="hidden" name="_method" value="put">
+  <input type="submit" value="Edit Figure">
 </form>

@@ -15,7 +15,6 @@ class LandmarksController < ApplicationController
 
   #where the landmark is created then shows the new landmark
   post '/landmarks' do
-    binding.pry
     @landmark = Landmark.find_or_create_by(name: params[:landmark][:name], year_completed: params[:landmark][:year_completed])
     redirect to "/landmarks/#{@landmark.id}" #this views the new landmark
   end

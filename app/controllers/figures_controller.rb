@@ -24,18 +24,25 @@ class FiguresController < ApplicationController
 			@figure.titles << title
 		end
 
-		params[:figure][:title_ids][0].keys.each do |title|
-			binding.pry
-			@figure.titles << Title.find_by(name: title)
+		if params[:figure][:title_ids] != nil
+			params[:figure][:title_ids][0].keys.each do |title|
+				@figure.titles << Title.find_by(name: title)
+			end
 		end
 
 		if params[:landmark][:name] != ""
-			landmark = Landmark.find_or_create_by(name: params[:landmark][:name], year_completed: params[:landmark][:year_completed])
+			landmark = Landmark.find_or_create_by(
+				name: params[:landmark][:name],
+				year_completed: params[:landmark][:year_completed])
 			@figure.landmarks << landmark
 		end
 
-		params[:figure][:landmark_ids][0].keys.each do |landmark|
-			@figure.landmarks << Landmark.find_by(name: landmark)
+		if params[:figure][:landmark_ids] != nil
+			# binding.pry
+			params[:figure][:landmark_ids][0].keys.each do |landmark|
+				# binding.pry
+				@figure.landmarks << Landmark.find_by(name: landmark)
+			end
 		end
 
 		redirect to "/figures/#{@figure.id}"
@@ -69,14 +76,43 @@ class FiguresController < ApplicationController
 
 		@figure_landmarks = @figure.landmarks
 		@landmarks = Landmark.all
-		
+
 		erb '/figures/edit'.to_sym
 	end
 
 	#this is the patch that will update the figure
-	patch '/figures/:id' do
-		@figure = Figure.find(param[:id])
-		@figure.update()#need to enter each key/value pair that enters anything that is updated
+	put '/figures/:id' do
+		@figure = Figure.find(params[:id])
+		@figure.update(name: params[:figure][:name])
+
+		if params[:title][:name] != ""
+			title = Title.find_or_create_by(name: params[:title][:name])
+			@figure.titles << title
+		end
+
+		if params[:figure][:title_ids] != nil
+			params[:figure][:title_ids][0].keys.each do |title|
+				@figure.titles = []
+				@figure.titles << Title.find_by(name: title)
+			end
+		end
+
+		if params[:landmark][:name] != ""
+			landmark = Landmark.find_or_create_by(name: params[:landmark][:name], year_completed: params[:landmark][:year_completed])
+			@figure.landmarks << landmark
+		end
+
+		if params[:figure][:landmark_ids] == nil
+			@figure.landmarks = []
+		else
+			params[:figure][:landmark_ids][0].keys.each do |landmark|
+				if Landmark.find_by(name: landmark).figure == nil
+					@figure.landmarks << Landmark.find_by(name: landmark)
+				end
+			end
+		end
+
+		#need to enter each key/value pair that enters anything that is updated
 		erb '/figures/show'.to_sym
 	end
 
