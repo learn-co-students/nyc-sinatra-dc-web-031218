@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Create New Figure</title>
+  </head>
+  <body>
+    <h1>Create New Figure</h1>
+
+    <form action="/figures/<%= @Figure.id %>" method="post">
+      Name: <input type="text" name="figure[:name]" id="name"><br><br>
+      Titless:<br><br>
+      <% @titles.each do |title| %>
+        <input type="checkbox" name="figure[title_ids][]"/>
+        <%= title.name %><br>
+        <br>
+      <%end%>
+      <br><br>
+
+      Landmarks:<br><br>
+      <% @landmarks.each do |landmark| %>
+        <input type="checkbox" name="figure[landmark_ids][]"/>
+        <%= landmark.name %><br>
+        <br>
+      <%end%>
+
+
+      <input type="hidden" name="_method" value="patch">
+      <input type="submit" value="Create New Figure">
+    </form>
+
+
+  </body>
+</html>

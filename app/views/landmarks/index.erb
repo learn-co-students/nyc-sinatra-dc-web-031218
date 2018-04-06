@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>All Landarks</title>
+  </head>
+  <body>
+    <h1>All Landarks</h1>
+    <% @landmarks.each do |landmark| %>
+    <ul>
+      <h3><%= landmark.name %></h3>
+      <li><%= landmark.year_completed %></li>
+      <% if landmark.figure %>
+      <li><%= landmark.figure.name%></li>
+      <% end %>
+      <li><a href="/landmarks/<%=landmark.id%>/edit">Edit</a></li>
+    </ul>
+    <% end %>
+
+
+
+  </body>
+</html>
