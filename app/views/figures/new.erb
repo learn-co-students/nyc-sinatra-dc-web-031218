@@ -3,16 +3,19 @@
   Name: <input type="text" name="figure[name]"><br>
 
   <h2>Titles</h2>
-    <% Title.all.each do |title| %>
+    <% @titles.each do |title| %>
     <p><%= title.name %><input type="checkbox" name="figure[title_ids][][<%=title.name%>]" id= "title_name"></p>
     <% end %>
 
 
 
 
-  Create New Title: <br><input type="text" name="title">
-    <% Landmark.all.each do |landmark| %>
-      <p><%= landmark.name %><input type="checkbox" name="landmark]landmark_ids][][<%=landmark.name%>]" id="landmark_name"></p>
+  Create New Title: <br><input type="text" name="title[name]">
+
+    <% @landmarks.each do |landmark| %>
+      <% if landmark.figure == nil %>
+        <p><%= landmark.name %><input type="checkbox" name="figure[landmark_ids][][<%=landmark.name%>]" id="landmark_name"></p>
+      <% end %>
     <% end %>
 
   Name: <input type="text" name="landmark[name]"><br>
