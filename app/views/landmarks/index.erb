@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>All Landarks</title>
-  </head>
-  <body>
+
     <h1>All Landarks</h1>
     <% @landmarks.each do |landmark| %>
     <ul>
@@ -13,11 +7,6 @@
       <% if landmark.figure %>
       <li><%= landmark.figure.name%></li>
       <% end %>
-      <li><a href="/landmarks/<%=landmark.id%>/edit">Edit</a></li>
+      <div><a href="/landmarks/<%=landmark.id%>/edit">Edit</a></div>
     </ul>
     <% end %>
-
-
-
-  </body>
-</html>

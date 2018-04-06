@@ -1,22 +1,25 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title><%= @figure.name %></title>
-  </head>
-  <body>
 
     <table>
       <tr>
         <th>Figure Name</th>
         <th>Title Name</th>
+        <th>Landmark Name</th>
       </tr>
       <tr>
         <td><%= @figure.name %></td>
-        <td><%= @figure.title.name %></td>
+        <td>
+          <ul>
+        <% @figure.titles.each do |title| %>
+        <li><%= title.name %></li>
+        <% end %>
+      </ul>
+        </td>
+        <td>
+          <ul>
+        <% @figure.landmarks.each do |landmark| %>
+        <li><%= landmark.name %></li>
+        <% end %>
+      </ul>
+        </td>
       </tr>
     <table>
-
-
-  </body>
-</html>

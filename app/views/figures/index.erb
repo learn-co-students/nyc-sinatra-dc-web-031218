@@ -1,20 +1,10 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>All Figures</title>
-  </head>
-  <body>
+
     <h1>All Figures</h1>
     <% @figures.each do |figure| %>
     <ul>
       <h3><%= figure.name %></h3>
-      <!-- <li><%= figure.titles.name %></li> -->
-      <li><a href="/figures/<%=figure.id%>/edit">Edit</a></li>
+      <li><%= figure.titles.name %></li>
+      <li><%= figure.landmarks.name %></li>
+      <div><a href="/figures/<%=figure.id%>/edit">Edit</a></div>
     </ul>
     <% end %>
-
-
-
-  </body>
-</html>
