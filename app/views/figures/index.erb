@@ -3,6 +3,9 @@
   Figure Title: <% figure.titles.each do |title| %><br/>
     <%= title.name %>
   <% end %><br/><br/>
+  Figure Landmark(s): <% figure.landmarks.each do |landmark| %><br/>
+    <%= landmark.name %>
+  <% end %><br/><br/>
 
 
   <a href="/figures/<%= figure.id %>">This figures page</a><br>
