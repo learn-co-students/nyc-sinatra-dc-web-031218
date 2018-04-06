@@ -2,9 +2,20 @@
     <h1>All Figures</h1>
     <% @figures.each do |figure| %>
     <ul>
-      <h3><%= figure.name %></h3>
-      <li><%= figure.titles.name %></li>
-      <li><%= figure.landmarks.name %></li>
+      <h3><a href="/figures/<%=figure.id%>"><%= figure.name %></a></h3>
+      <ul><strong>Titles</strong>
+      <br>
+      <% figure.titles.each do |title| %>
+        <li><%= title.name %></li>
+        <% end %>
+      </ul>
+      <br><br>
+      <ul><strong>Landmarks</strong>
+      <br>
+      <% figure.landmarks.each do |landmark| %>
+      <li><%= landmark.name %></li>
+      <% end %>
+    </ul>
       <div><a href="/figures/<%=figure.id%>/edit">Edit</a></div>
     </ul>
     <% end %>
