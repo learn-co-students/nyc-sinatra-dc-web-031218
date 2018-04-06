@@ -1,0 +1,19 @@
+<table>
+  <tr>
+    <th>Figure</th>
+  </tr>
+  <tr>
+    <!-- <p><td>My Name is: <%= @figure.name %></td></p><br/>
+    <td>My Title(s) is/are: <%= @figure.titles %></td><br/>
+    <td>My associated landmarks are: <%= @figure.landmarks %></td><br/> -->
+  </tr>
+<table>
+My Name is: <%= @figure.name %><br/>
+My Title(s) is/are:
+  <% @figure.titles.each do |title|%>
+    <%= title.name%>
+  <% end %><br/>
+My associated landmarks are:
+  <% @figure.landmarks.each do |landmark|%>
+    <%= landmark.name %>
+  <% end %>

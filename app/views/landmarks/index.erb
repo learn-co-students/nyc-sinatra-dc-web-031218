@@ -1,0 +1,11 @@
+<% @landmarks.each do |landmark| %>
+  Landmark Name: <%= landmark.name %><br>
+  Year Completed: <%= landmark.year_completed %><br>
+  <% if landmark.figure != nil%>
+    Associated Figure: <%= landmark.figure.name %><br/>
+  <% end %>
+
+  <a href="/landmarks/<%= landmark.id%>">This landmarks page</a><br>
+
+  <p>-----------------------------------------------------</p>
+<% end %>
